@@ -1,0 +1,9 @@
+# Changelog
+
+## Unreleased
+- 2021-03-11: Update type definitions
+- 2024-05-14: perf(ui): fix pagination offset
+- 2023-08-15: Update type definitions
+- 2023-06-07: Update logging output
+- 2022-07-01: perf(middleware): add session handling
+
