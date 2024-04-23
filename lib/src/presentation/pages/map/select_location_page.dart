@@ -19,6 +19,18 @@ class SelectLocationPage extends StatefulWidget {
 class _SelectLocationPageState extends State<SelectLocationPage> {
   // available locations, and their cities
   final Map<String, List<String>> locations = {
+    'Pakistan': [
+      'Karachi',
+      'Lahore',
+      'Faisalabad',
+      'Rawalpindi',
+      'Islamabad',
+      'Multan',
+      'Hyderabad',
+      'Gujranwala',
+      'Peshawar',
+      'Quetta'
+    ],
     'USA': ['New York', 'Los Angeles', 'Chicago'],
     'UK': ['London', 'Manchester', 'Birmingham, Liverpool', 'Leeds'],
     'Canada': ['Toronto', 'Montreal', 'Vancouver'],

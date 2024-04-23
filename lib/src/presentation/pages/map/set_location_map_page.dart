@@ -6,7 +6,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:nectar/src/data/services/geoservices.dart';
 import 'package:nectar/src/presentation/utils/app_colors.dart';
-import 'package:nectar/src/secrets.dart';
+// import 'package:nectar/src/secrets.dart';
 
 class SetLocationMapPage extends StatefulWidget {
   const SetLocationMapPage({super.key});
@@ -99,7 +99,7 @@ class _SetLocationMapPageState extends State<SetLocationMapPage>
               children: [
                 TileLayer(
                   urlTemplate:
-                      "https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/{z}/{x}/{y}?access_token=$mapboxAccessToken",
+                      "https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaGlsYWxzYWxhcnppIiwiYSI6ImNsdGZneHN6cjBwcmQybG0yOHB0dmNmMmgifQ.2ROCRaw1rI93e9Hrr4KJcw",
                 ),
                 CurrentLocationLayer(),
               ],

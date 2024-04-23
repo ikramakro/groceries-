@@ -47,7 +47,7 @@ class _SplashPageState extends State<SplashPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'nectar',
+                  'Grocery',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 64,

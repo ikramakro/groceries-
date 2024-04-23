@@ -175,9 +175,7 @@ class AppRouter {
         );
       case verificationRoute:
         return MaterialPageRoute<dynamic>(
-          builder: (_) => VerificationPage(
-            verificationId: settings.arguments as String,
-          ),
+          builder: (_) => VerificationPage(),
         );
       default:
         return MaterialPageRoute<dynamic>(

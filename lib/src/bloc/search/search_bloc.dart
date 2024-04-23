@@ -13,7 +13,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     on<SearchProducts>((event, emit) async {
       emit(SearchLoading());
       try {
+        print('=====>>>${event.query.toString()}');
         final products = await searchRepository.searchProducts(event.query);
+        print('=====> ${products.length}');
         emit(SearchLoaded(products: products));
       } catch (e, s) {
         debugPrintStack(label: e.toString(), stackTrace: s);

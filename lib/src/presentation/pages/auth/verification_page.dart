@@ -1,117 +1,82 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pinput/pinput.dart';
-
-import 'package:nectar/src/bloc/register_phone/register_phone_bloc.dart';
-import 'package:nectar/src/presentation/utils/app_colors.dart';
-import 'package:nectar/src/presentation/utils/app_router.dart';
-import 'package:nectar/src/presentation/utils/assets.dart';
 
 class VerificationPage extends StatefulWidget {
-  final String verificationId;
-  const VerificationPage({super.key, required this.verificationId});
+  const VerificationPage({
+    super.key,
+  });
 
   @override
   State<VerificationPage> createState() => _VerificationPageState();
 }
 
 class _VerificationPageState extends State<VerificationPage> {
-  final TextEditingController otpController = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        } else if (snapshot.hasData) {
+          User? user = snapshot.data;
+          if (user!.emailVerified) {
+            return HomeScreen();
+          } else {
+            return buildVerificationUI(context);
+          }
+        } else {
+          // User is not authenticated, handle as needed
+          // For example, you might want to navigate to a login screen
+          return const Scaffold(
+            body: Center(
+              child: Text('User is not authenticated'),
+            ),
+          );
+        }
+      },
+    );
+  }
 
+  Widget buildVerificationUI(BuildContext context) {
+    // This is the UI for the verification screen
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Verification Screen'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Text('Check Your email address for verification'),
+            ElevatedButton(
+              onPressed: () async {
+                User user = FirebaseAuth.instance.currentUser!;
+                await user.sendEmailVerification();
+              },
+              child: const Text('Resed Email'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Positioned.fill(
-            child: Image.asset(
-              PngAssets.mask,
-              fit: BoxFit.fill,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(
-              top: MediaQuery.of(context).padding.top + 30,
-              left: 25,
-              right: 25,
-              bottom: 90,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // back button
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () => Navigator.pop(context),
-                      icon: const Icon(Icons.arrow_back_ios),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 30),
-                // text
-                const Text(
-                  'Enter your verification code',
-                  style: TextStyle(
-                    fontSize: 26,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                const SizedBox(height: 30),
-                // otp field
-                Pinput(
-                  length: 6,
-                  androidSmsAutofillMethod:
-                      AndroidSmsAutofillMethod.smsUserConsentApi,
-                  controller: otpController,
-                  onCompleted: (otp) {
-                    // Verify otp
-                    context.read<RegisterPhoneBloc>().add(
-                          VerifyPhoneWithCredential(
-                            credential: PhoneAuthProvider.credential(
-                              verificationId: widget.verificationId,
-                              smsCode: otp,
-                            ),
-                            onVerified: () {
-                              // Navigate to select location page
-                              Navigator.pushNamed(
-                                context,
-                                AppRouter.selectLocationRoute,
-                              );
-                            },
-                          ),
-                        );
-                  },
-                ),
-                const SizedBox(height: 30),
-                // resend otp
-                Row(
-                  children: [
-                    const Text(
-                      'Didn\'t receive the code?',
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        // Resend verification code
-                      },
-                      child: const Text(
-                        'Resend',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: AppColors.primary,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
+      appBar: AppBar(
+        title: const Text('Home Screen'),
+      ),
+      body: const Center(
+        child: Text('Welcome Home!'),
       ),
     );
   }

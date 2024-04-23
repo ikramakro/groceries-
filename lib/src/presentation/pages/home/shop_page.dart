@@ -205,50 +205,49 @@ class _ShopPageState extends State<ShopPage> {
                 const SizedBox(height: 30),
               ],
               // stores
-              if (state.stores.isNotEmpty) ...[
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Stores',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(
+                          AppRouter.storesRoute,
+                        );
+                      },
+                      child: const Text('See All'),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20),
+              // vertical list
+              ListView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: state.stores.length,
+                itemBuilder: (context, index) {
+                  return Column(
                     children: [
-                      const Text(
-                        'Stores',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      StoreCard(
+                        store: state.stores[index],
                       ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pushNamed(
-                            AppRouter.storesRoute,
-                          );
-                        },
-                        child: const Text('See All'),
-                      ),
+                      const SizedBox(height: 20),
                     ],
-                  ),
-                ),
-                const SizedBox(height: 20),
-                // vertical list
-                ListView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: state.stores.length,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        StoreCard(
-                          store: state.stores[index],
-                        ),
-                        const SizedBox(height: 20),
-                      ],
-                    );
-                  },
-                ),
-                const SizedBox(height: 30),
-              ],
+                  );
+                },
+              ),
+              const SizedBox(height: 30),
             ],
           ),
         ),

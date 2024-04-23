@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "503730897487",
+    "project_id": "grocery-app-48185",
+    "storage_bucket": "grocery-app-48185.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:503730897487:android:06bce85c7b4f934277a03a",
+        "android_client_info": {
+          "package_name": "com.shokhrukhbek.nectar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "503730897487-gdi5m6g6eon0kk917l9k3vks10ppvf5k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shokhrukhbek.nectar",
+            "certificate_hash": "9e8f3d87ec9f03690b822b889634c7e18b62280d"
+          }
+        },
+        {
+          "client_id": "503730897487-i958518kgoro16mpie7ksindobsfel66.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrhogrAALzfHLB7ADY--vxVL3ZOC_K3kM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "503730897487-i958518kgoro16mpie7ksindobsfel66.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "503730897487-dp1ts7m8ilfo19geqfvg0k354b7hven5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.shokhrukhbek.nectar"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

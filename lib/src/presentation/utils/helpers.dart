@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
@@ -49,4 +50,9 @@ bool isUserRegistered() {
   } else {
     return user.address.isEmpty ? false : true;
   }
+}
+
+bool isEmailVerified() {
+  var user = auth.FirebaseAuth.instance.currentUser;
+  return user != null && user.emailVerified;
 }

@@ -40,7 +40,14 @@ class _RegisterPageState extends State<RegisterPage> {
         if (state is RegisterSuccess) {
           ignoring = false;
           Navigator.pop(context);
-          Navigator.pushNamed(context, AppRouter.registerPhoneRoute);
+          Navigator.pushNamed(
+            context,
+            AppRouter.loginRoute,
+          );
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text('Verify your email address then login '),
+            backgroundColor: AppColors.error,
+          ));
         }
         if (state is RegisterFailure) {
           ignoring = false;
@@ -155,28 +162,28 @@ class _RegisterPageState extends State<RegisterPage> {
                           }
                         },
                       ),
-                      const SizedBox(height: 20),
-                      DefaultButton(
-                        text: "Continue with Google",
-                        onTap: () {
-                          context.read<RegisterBloc>().add(
-                                RegisterWithGoogle(),
-                              );
-                        },
-                        backgroundColor: AppColors.googleBlue,
-                        leading: SvgPicture.asset(SvgAssets.google),
-                      ),
-                      const SizedBox(height: 20),
-                      DefaultButton(
-                        text: "Continue with Facebook",
-                        onTap: () {
-                          context.read<RegisterBloc>().add(
-                                RegisterWithFacebook(),
-                              );
-                        },
-                        backgroundColor: AppColors.facebookBlue,
-                        leading: SvgPicture.asset(SvgAssets.facebook),
-                      ),
+                      // const SizedBox(height: 20),
+                      // DefaultButton(
+                      //   text: "Continue with Google",
+                      //   onTap: () {
+                      //     context.read<RegisterBloc>().add(
+                      //           RegisterWithGoogle(),
+                      //         );
+                      //   },
+                      //   backgroundColor: AppColors.googleBlue,
+                      //   leading: SvgPicture.asset(SvgAssets.google),
+                      // ),
+                      // const SizedBox(height: 20),
+                      // DefaultButton(
+                      //   text: "Continue with Facebook",
+                      //   onTap: () {
+                      //     context.read<RegisterBloc>().add(
+                      //           RegisterWithFacebook(),
+                      //         );
+                      //   },
+                      //   backgroundColor: AppColors.facebookBlue,
+                      //   leading: SvgPicture.asset(SvgAssets.facebook),
+                      // ),
                       const SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

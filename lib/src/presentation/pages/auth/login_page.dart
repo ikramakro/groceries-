@@ -42,12 +42,22 @@ class _LoginPageState extends State<LoginPage> {
           Navigator.pop(context);
 
           if (isUserRegistered()) {
-            Navigator.pushReplacementNamed(context, AppRouter.homeRoute);
+            if (isEmailVerified()) {
+              Navigator.pushReplacementNamed(context, AppRouter.homeRoute);
+            } else {
+              Navigator.pushReplacementNamed(
+                  context, AppRouter.verificationRoute);
+            }
           } else {
-            Navigator.pushNamed(
-              context,
-              AppRouter.registerPhoneRoute,
-            );
+            if (isEmailVerified()) {
+              Navigator.pushNamed(
+                context,
+                AppRouter.selectLocationRoute,
+              );
+            } else {
+              Navigator.pushReplacementNamed(
+                  context, AppRouter.verificationRoute);
+            }
           }
         }
         if (state is LoginFailure) {
@@ -186,28 +196,28 @@ class _LoginPageState extends State<LoginPage> {
                             }
                           },
                         ),
-                        const SizedBox(height: 20),
-                        DefaultButton(
-                          text: "Continue with Google",
-                          onTap: () {
-                            context.read<LoginBloc>().add(
-                                  LoginWithGoogle(),
-                                );
-                          },
-                          backgroundColor: AppColors.googleBlue,
-                          leading: SvgPicture.asset(SvgAssets.google),
-                        ),
-                        const SizedBox(height: 20),
-                        DefaultButton(
-                          text: "Continue with Facebook",
-                          onTap: () {
-                            context.read<LoginBloc>().add(
-                                  LoginWithFacebook(),
-                                );
-                          },
-                          backgroundColor: AppColors.facebookBlue,
-                          leading: SvgPicture.asset(SvgAssets.facebook),
-                        ),
+                        // const SizedBox(height: 20),
+                        // DefaultButton(
+                        //   text: "Continue with Google",
+                        //   onTap: () {
+                        //     context.read<LoginBloc>().add(
+                        //           LoginWithGoogle(),
+                        //         );
+                        //   },
+                        //   backgroundColor: AppColors.googleBlue,
+                        //   leading: SvgPicture.asset(SvgAssets.google),
+                        // ),
+                        // const SizedBox(height: 20),
+                        // DefaultButton(
+                        //   text: "Continue with Facebook",
+                        //   onTap: () {
+                        //     context.read<LoginBloc>().add(
+                        //           LoginWithFacebook(),
+                        //         );
+                        //   },
+                        //   backgroundColor: AppColors.facebookBlue,
+                        //   leading: SvgPicture.asset(SvgAssets.facebook),
+                        // ),
                         const SizedBox(height: 20),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,

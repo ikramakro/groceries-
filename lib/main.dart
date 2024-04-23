@@ -22,12 +22,19 @@ import 'package:nectar/src/bloc/store_details/store_details_bloc.dart';
 import 'package:nectar/src/bloc/stores/stores_bloc.dart';
 import 'package:nectar/src/data/repositories/product_repository.dart';
 import 'package:nectar/src/data/services/hive_adapters.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await FirebaseAppCheck.instance
+      // Your personal reCaptcha public key goes here:
+      .activate(
+    androidProvider: AndroidProvider.debug,
+    appleProvider: AppleProvider.debug,
   );
 
   // Pass all uncaught "fatal" errors from the framework to Crashlytics

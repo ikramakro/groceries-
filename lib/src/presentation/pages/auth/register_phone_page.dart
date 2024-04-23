@@ -38,11 +38,13 @@ class _RegisterPhonePageState extends State<RegisterPhonePage> {
                     user_model.User user = Hive.box('myBox').get('user');
                     user.phoneNumber = countryCode + phoneController.text;
                     Hive.box('myBox').put('user', user);
-
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text(
+                          'Verification Email sent to your provided email address'),
+                    ));
                     Navigator.pushNamed(
                       context,
                       AppRouter.verificationRoute,
-                      arguments: verificationId,
                     );
                   },
                 ),

@@ -16,6 +16,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
           email: event.email,
           password: event.password,
         );
+
         emit(RegisterSuccess());
       } catch (e, s) {
         debugPrintStack(label: e.toString(), stackTrace: s);

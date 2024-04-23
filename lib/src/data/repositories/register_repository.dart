@@ -8,7 +8,8 @@ import 'package:nectar/src/data/services/firebase_firestore_service.dart';
 
 class RegisterRepository {
   final AuthService _authService = AuthService();
-
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  User? _user;
   Future<void> createUserWithEmailAndPassword({
     required String email,
     required String password,
@@ -18,7 +19,9 @@ class RegisterRepository {
       email,
       password,
     );
-
+    print('==========>>>>>>>>>>>>>>>>>');
+    await _firebaseAuth.currentUser!.sendEmailVerification();
+    print('==========>>>>>>>>>>>>>>>>>');
     // create user data
     final user = user_model.User(
       uid: userCredential.user!.uid,
@@ -39,6 +42,15 @@ class RegisterRepository {
 
     // save to hive
     await Hive.box('myBox').put('user', user);
+  }
+
+  Future<void> verifyEmail() async {
+    try {
+      _user = _firebaseAuth.currentUser;
+      await _user!.sendEmailVerification();
+    } catch (e) {
+      print("Error sending verification email: $e");
+    }
   }
 
   Future<void> createUserWithGoogle() async {

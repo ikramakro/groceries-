@@ -20,6 +20,7 @@ class RegisterPhoneBloc extends Bloc<RegisterPhoneEvent, RegisterPhoneState> {
           onVerificationFailed: event.onVerificationFailed,
           onCodeAutoRetrievalTimeout: event.onCodeAutoRetrievalTimeout,
         );
+
         emit(RegisterPhoneSuccess());
       } catch (e, s) {
         debugPrintStack(label: e.toString(), stackTrace: s);

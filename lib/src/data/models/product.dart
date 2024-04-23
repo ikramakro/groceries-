@@ -11,7 +11,7 @@ class Product extends Equatable {
   final String? description;
   final num price;
   final Unit unit;
-  final List<String>? images;
+  final List<dynamic>? images;
   final DocumentReference? category;
   final String? brand;
   final Map<String, num>? nutritions;
@@ -40,7 +40,7 @@ class Product extends Equatable {
     String? description,
     num? price,
     Unit? unit,
-    List<String>? images,
+    List<dynamic>? images,
     DocumentReference? category,
     String? brand,
     Map<String, num>? nutritions,
@@ -88,7 +88,7 @@ class Product extends Equatable {
       price: map['price'] as num,
       unit: unitFromName(map['unit'] as String),
       images: map['images'] != null
-          ? List<String>.from((map['images'] as List<String>))
+          ? List<dynamic>.from((map['images'] as List<dynamic>))
           : null,
       category:
           map['category'] != null ? map['category'] as DocumentReference : null,
