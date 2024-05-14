@@ -15,6 +15,15 @@ import 'package:nectar/src/presentation/widgets/cards/product_card.dart';
 import 'package:nectar/src/presentation/widgets/cards/store_card.dart';
 import 'package:nectar/src/presentation/widgets/textfields/search_text_field.dart';
 
+import '../../../bloc/account/account_bloc.dart';
+import '../account/about_page.dart';
+import '../account/help_page.dart';
+import '../account/my_details_page.dart';
+import '../account/notifications_page.dart';
+import '../account/payment_methods_page.dart';
+import '../account/promo_codes_page.dart';
+import '../order/orders_page.dart';
+
 class ShopPage extends StatefulWidget {
   const ShopPage({
     super.key,
@@ -87,6 +96,95 @@ class _ShopPageState extends State<ShopPage> {
             ),
           ],
         ),
+        actions: <Widget>[
+          PopupMenuButton<String>(
+            onSelected: (value) {
+              switch (value) {
+                case 'Order':
+                  // Navigate to Order screen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => OrdersPage()),
+                  );
+                  break;
+                case 'My Detials':
+                  // Navigate to My Details screen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyDetailsPage()),
+                  );
+                  break;
+                case 'Delivery Address':
+                  // Navigate to Delivery Address screen
+                  Navigator.of(context)
+                      .pushNamed(AppRouter.selectLocationRoute);
+                  break;
+                case 'Payment Method':
+                  // Navigate to Payment Method screen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PaymentMethodsPage()),
+                  );
+                  break;
+                case 'Promo Code':
+                  // Navigate to Promo Code screen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PromoCodesPage()),
+                  );
+                  break;
+                case 'Notification':
+                  // Navigate to Notification screen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => NotificationsPage()),
+                  );
+                  break;
+                case 'Help':
+                  // Navigate to Help screen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HelpPage()),
+                  );
+                  break;
+                case 'About':
+                  // Navigate to About screen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AboutPage()),
+                  );
+                  break;
+                case 'Logout':
+                  // Navigate to Logout screen
+                  BlocProvider.of<AccountBloc>(context).add(
+                    AccountLogout(),
+                  );
+                  break;
+                // Add cases for other menu items
+              }
+            },
+            itemBuilder: (BuildContext context) {
+              return {
+                'Order',
+                'My Detials',
+                'Delivery Address',
+                'Payment Method',
+                'Promo Code',
+                'Notification',
+                'Help',
+                'About',
+                'Logout',
+              }.map((String choice) {
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
+            },
+          ),
+        ],
       ),
       body: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
