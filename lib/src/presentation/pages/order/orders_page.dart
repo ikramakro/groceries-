@@ -45,7 +45,7 @@ class OrdersPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Date: $date'),
-          Text('Total: \$$total'),
+          Text('Total: pkr$total'),
           Text('Status: $status'),
         ],
       ),
@@ -86,7 +86,7 @@ class OrdersPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       const Text(
-                        'Total: \$100',
+                        'Total: pkr 100',
                         style: TextStyle(
                           fontSize: 16,
                         ),
@@ -120,7 +120,7 @@ class OrdersPage extends StatelessWidget {
                               fit: BoxFit.cover,
                             ),
                             title: const Text('Organic Bananas'),
-                            subtitle: const Text('Price: \$4.99'),
+                            subtitle: const Text('Price: pkr 4.99'),
                             trailing: const Text('Quantity: 1'),
                           );
                         },

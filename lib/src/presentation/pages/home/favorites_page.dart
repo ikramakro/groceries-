@@ -204,7 +204,7 @@ class FavoriteItem extends StatelessWidget {
             ),
             // price
             Text(
-              '\$${product.price}',
+              'pkr${product.price}',
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,

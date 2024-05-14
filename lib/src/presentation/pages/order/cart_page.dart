@@ -43,7 +43,7 @@ class CartPage extends StatelessWidget {
                 ),
                 color: AppColors.primaryDark,
                 child: Text(
-                  '\$${ProductRepository.getTotalPrice().toStringAsFixed(2)}',
+                  'pkr${ProductRepository.getTotalPrice().toStringAsFixed(2)}',
                   style: const TextStyle(
                     color: Colors.white,
                   ),
@@ -253,7 +253,7 @@ class CartItem extends StatelessWidget {
                 ),
                 // price
                 Text(
-                  '\$${(orderProduct.product.price * orderProduct.quantity).toStringAsFixed(2)}',
+                  'pkr${(orderProduct.product.price * orderProduct.quantity).toStringAsFixed(2)}',
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,

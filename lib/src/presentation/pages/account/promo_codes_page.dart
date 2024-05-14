@@ -18,7 +18,7 @@ class PromoCodesPage extends StatelessWidget {
           ),
           _buildPromoCodeItem(
             code: 'FREESHIP',
-            description: 'Free shipping on orders over \$50',
+            description: 'Free shipping on orders over pkr 50',
             expiryDate: 'Expires on 15 Sep 2023',
           ),
           _buildPromoCodeItem(

@@ -275,7 +275,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         ],
                       ),
                       Text(
-                        '\$${widget.product.price.toStringAsFixed(2)}',
+                        'pkr${widget.product.price.toStringAsFixed(2)}',
                         style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w600,

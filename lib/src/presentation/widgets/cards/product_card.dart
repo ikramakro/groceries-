@@ -79,7 +79,7 @@ class ProductCard extends StatelessWidget {
               children: [
                 // price
                 Text(
-                  '\$${product.price.toStringAsFixed(2)}',
+                  'pkr${product.price.toStringAsFixed(2)}',
                   maxLines: 1,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
