@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- 2024-07-22: fix(db): add rate limiting
 - 2021-03-11: Update type definitions
 - 2024-05-14: perf(ui): fix pagination offset
 - 2023-08-15: Update type definitions
